@@ -1,7 +1,6 @@
 pragma solidity ^0.4.22;
 
 import "../BasicErc20Token.sol";
-import "./AdvancedERC1202.sol";
 
 
 contract AdvancedTokenVote1202 {
@@ -75,6 +74,7 @@ contract AdvancedTokenVote1202 {
         return weightedVoteCounts[issueId][option];
     }
 
+    // TODO: changed to topOptions if determined
     function winningOption(uint issueId) public view returns (uint option) {
         uint ci = 0;
         for (uint i = 1; i < options[issueId].length; i++) {
