@@ -21,7 +21,7 @@ contract SimplestVote1202 is InterfaceErc1202 {
         require(option == 1 || option == 2, "Vote option has to be either 1 or 2.");
         require(ballotOf_[msg.sender] == 0, "The sender has casted ballots."); // no re-vote
         ballotOf_[msg.sender] = option;
-        voteCounts[option] = voteCounts[option] + 1;
+        voteCounts[option] = voteCounts[option] + 1; // TODO(xinbenlv): use SafeMath in a real implementation
         emit OnVote(msg.sender, option);
         return true;
     }
