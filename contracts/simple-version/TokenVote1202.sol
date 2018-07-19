@@ -1,6 +1,6 @@
 pragma solidity ^0.4.22;
 
-import "./SampleToken.sol";
+import "../BasicErc20Token.sol";
 
 
 /**
@@ -19,7 +19,7 @@ contract TokenVote1202 {
     mapping (address => uint256) public weights;
     mapping (uint => uint256) public weightedVoteCounts;
     mapping (address => uint) public  ballots;
-    SampleToken token;
+    BasicErc20Token token;
 
     /**
         tokenContract: address to a smart contract of the OpenZeppelin BasicToken or
@@ -29,7 +29,7 @@ contract TokenVote1202 {
         address[] qualifiedVoters_) public {
         require(_options.length >= 2);
         options = _options;
-        token = SampleToken(_tokenAddr);
+        token = BasicErc20Token(_tokenAddr);
         isOpen = true;
         // We realize the ERC20 will need to be extended to support snapshoting the weights/balances.
         for (uint i = 0; i < qualifiedVoters_.length; i++) {
@@ -102,6 +102,5 @@ contract TokenVote1202 {
 
     event OnVote(address indexed _from, uint _value);
     event OnStatusChange(bool newIsOpen);
-    event DebugMsg(string msg);
 
 }

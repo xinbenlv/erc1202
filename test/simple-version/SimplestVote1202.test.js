@@ -14,7 +14,7 @@ contract("SimplestVote1202", async function(accounts) {
     simplestVote1202 = await SimplestVote1202.new();
   };
 
-  describe("Initial State", function () {
+  describe("behavior", function () {
     beforeEach(deploy);
 
     it("should has correct initial states", async function () {

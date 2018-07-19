@@ -1,4 +1,4 @@
-const SampleToken = artifacts.require("./simple-version/SampleToken.sol");
+const SampleToken = artifacts.require("./BasicErc20Token.sol");
 const TokenVote1202 = artifacts.require("./simple-version/TokenVote1202.sol");
 
 const eq = assert.equal.bind(assert);
@@ -17,7 +17,7 @@ contract("TokenVote1202", function(accounts) {
     await tokenVote1202.init(sampleToken.address, [1, 2, 3], [owner, user1, user2]);
   };
 
-  describe("Initial State", function () {
+  describe("behavior", function () {
     beforeEach(deploy);
 
     it("should carries the weights initialized by sampleToken", async function () {

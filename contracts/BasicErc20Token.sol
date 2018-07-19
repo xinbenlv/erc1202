@@ -1,12 +1,10 @@
 pragma solidity ^0.4.22;
 
 
-contract SampleToken {
+contract BasicErc20Token {
 
-    /* Public variables of the token */
-    string public standard = "Token 0.1";
-    string public name = "ZToken";
-    string public symbol = "ZTK";
+    string public name = "BasicErc20Token";
+    string public symbol = "BET";
     uint8 public decimals = 0;
     uint256 public totalSupply;
     address public owner;
