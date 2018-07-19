@@ -28,12 +28,14 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*", // Match any network id
+      gas: 4e8,
+      gasPrice: 2e5,
     },
     ropsten: {
       provider: new HDWalletProvider(privateKey, "https://ropsten.infura.io/"+infuraApikey),
       network_id: 3,
-      gas: 45000000,
-      gasPrice: 20000000000,
+      gas: 4e6,
+      gasPrice: 2e10,
     }
   },
 };

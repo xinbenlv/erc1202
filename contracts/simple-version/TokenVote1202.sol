@@ -1,9 +1,10 @@
 pragma solidity ^0.4.22;
 
 import "./InterfaceErc1202.sol";
+import "./SampleToken.sol";
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/BasicToken.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
 
 /**
@@ -15,33 +16,32 @@ import "openzeppelin-solidity/contracts/token/ERC20/BasicToken.sol";
   It makes assumption that during the time of voting, the holding state of the token contract, i.e. the balanceOf
   is being frozen.
  */
-contract TokenVote1202 is InterfaceErc1202 {
+contract TokenVote1202 {
     uint[] internal options;
     bool internal isOpen;
-    mapping (address => uint256) internal weights;
-    mapping (uint => uint256) internal weightedVoteCounts;
-    mapping (address => uint) internal  ballots;
+    mapping (address => uint256) public weights;
+    mapping (uint => uint256) public weightedVoteCounts;
+    mapping (address => uint) public  ballots;
+    SampleToken token;
 
     /**
         tokenContract: address to a smart contract of the OpenZeppelin BasicToken or
                        any ERC-basic token supporting accessing to balances
      */
-    constructor(
-        address _tokenAddr, uint[] _options,
-        address[] qualifiedVoters) public {
-        require(options.length >= 2);
+    function init(address _tokenAddr, uint[] _options,
+        address[] qualifiedVoters_) public {
+        require(_options.length >= 2);
         options = _options;
-        BasicToken token = BasicToken(_tokenAddr);
-
+        token = SampleToken(_tokenAddr);
+        isOpen = true;
         // We realize the ERC20 will need to be extended to support snapshoting the weights/balances.
-        for (uint i = 0; i < qualifiedVoters.length; i++) {
-            address voter = qualifiedVoters[i];
+        for (uint i = 0; i < qualifiedVoters_.length; i++) {
+            address voter = qualifiedVoters_[i];
             weights[voter] = token.balanceOf(voter);
         }
     }
 
-    /* Send coins */
-    function vote(uint option) external returns (bool success) {
+    function vote(uint option) public returns (bool success) {
         require(isOpen);
         // TODO check if option is valid
 
@@ -52,39 +52,43 @@ contract TokenVote1202 is InterfaceErc1202 {
         return true;
     }
 
-    function setStatus(bool isOpen_) external returns (bool success) {
+    function setStatus(bool isOpen_) public returns (bool success) {
+        // Should have a sense of ownership. Only Owner should be able to set the status
         isOpen = isOpen_;
         emit OnStatusChange(isOpen_);
         return true;
     }
 
-    function ballotOf(address addr) external view returns (uint option) {
+    function ballotOf(address addr) public view returns (uint option) {
         return ballots[addr];
     }
 
-    function weightOf(address addr) external view returns (uint weight) {
+    function weightOf(address addr) public view returns (uint weight) {
         return weights[addr];
     }
 
-    function getStatus() external view returns (bool isOpen_) {
+    function getStatus() public view returns (bool isOpen_) {
         return isOpen;
     }
 
-    function weightedVoteCountsOf(uint option) external view returns (uint count) {
+    function weightedVoteCountsOf(uint option) public view returns (uint count) {
         return weightedVoteCounts[option];
     }
 
-    function winningOption() external view returns (uint option) {
-        uint currentWiningOptionIndex = 0;
-        for (uint i = 1; i <= options.length; i++) {
-            if (weightedVoteCounts[options[i]] >= weightedVoteCounts[options[currentWiningOptionIndex]]) {
-                currentWiningOptionIndex = i;
-            }
+    function winningOption() public view returns (uint option) {
+        uint ci = 0;
+        for (uint i = 1; i < options.length; i++) {
+            uint optionI = options[i];
+            uint optionCi = options[ci];
+            if (weightedVoteCounts[optionI] > weightedVoteCounts[optionCi]) {
+                ci = i;
+            } // else keep it there
         }
-        return options[currentWiningOptionIndex];
+        return options[ci];
     }
 
     event OnVote(address indexed _from, uint _value);
     event OnStatusChange(bool newIsOpen);
+    event DebugMsg(string msg);
 
 }

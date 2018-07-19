@@ -22,7 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "openzeppelin-solidity": "^1.11.0",
-    "truffle-hdwallet-provider-privkey": "^0.2.0"
+    "truffle-hdwallet-provider-privkey": "^0.2.0",
+    "truffle-test-utils": "^0.1.0"
   },
   "devDependencies": {
     "truffle-flattener": "^1.2.5"
