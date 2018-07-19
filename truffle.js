@@ -12,7 +12,28 @@
  *   },
  */
 
+const HDWalletProvider = require("truffle-hdwallet-provider-privkey");
+const privateKey = process.env.PRIVATE_KEY;
+console.assert(privateKey, 'Please set private key by `export PRIVATE_KEY=<your private key>`');
+const infuraApikey = process.env.INFURA_APIKEY;
+console.assert(infuraApikey, 'Please set private key by `export INFURA_APIKEY=<your infura API key>`');
+
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
+  // See <http://truffleframework.com/docs/advanced/configuration>
+  // for more about customizing your Truffle configuration!
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*", // Match any network id
+    },
+    ropsten: {
+      provider: new HDWalletProvider(privateKey, "https://ropsten.infura.io/"+infuraApikey),
+      network_id: 3,
+      gas: 4500000,
+      gasPrice: 20000000000,
+    }
+  },
 };

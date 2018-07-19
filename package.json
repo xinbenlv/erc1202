@@ -1,0 +1,30 @@
+{
+  "name": "eip-1202-draft",
+  "version": "0.0.1",
+  "description": "Repository for the work of drafting EIP-1202",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/xinbenlv/eip-1202-draft"
+  },
+  "keywords": [
+    "ethereum",
+    "eip",
+    "erc"
+  ],
+  "author": "Zainan Victor Zhou",
+  "license": "MIT",
+  "dependencies": {
+    "openzeppelin-solidity": "^1.11.0",
+    "truffle-hdwallet-provider-privkey": "^0.2.0"
+  },
+  "devDependencies": {
+    "truffle-flattener": "^1.2.5"
+  }
+}
