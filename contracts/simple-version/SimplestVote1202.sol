@@ -1,7 +1,5 @@
 pragma solidity ^0.4.22;
 
-import "./InterfaceErc1202.sol";
-
 
 /**
   A simplest vote interface.
@@ -13,9 +11,15 @@ import "./InterfaceErc1202.sol";
   Deployed on [Etherscan:Ropsten](https://ropsten.etherscan.io/address/0xec27791163cd27229d4d54ee69faf5a70058d90b#code)
  */
 contract SimplestVote1202 {
-
+    uint[] options = [1, 2];
+    mapping(uint => string) internal optionDescMap;
     mapping (uint => uint) private voteCounts;
     mapping (address => uint) private ballotOf_;
+
+    constructor() public {
+        optionDescMap[1] = "Yes";
+        optionDescMap[2] = "No";
+    }
 
     function vote(uint option) public returns (bool success) {
         require(option == 1 || option == 2, "Vote option has to be either 1 or 2.");
@@ -53,6 +57,18 @@ contract SimplestVote1202 {
         } else {
             return 2;
         }
+    }
+
+    function issueDescription() public pure returns (string desc) {
+        return "Should we make John Smith our CEO?";
+    }
+
+    function availableOptions() public view returns (uint[] options_) {
+        return options;
+    }
+
+    function optionDescription(uint option) public view returns (string desc) {
+        return optionDescMap[option];
     }
 
     event OnVote(address indexed _from, uint _value);

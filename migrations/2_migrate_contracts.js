@@ -14,8 +14,7 @@ module.exports = async function(deployer) {
   ];
 
   await deployer.deploy(SampleToken);
-  const tokenAddr = SampleToken.address; // SampleToken at development
-  await deployer.deploy(TokenVote1202, );
+  await deployer.deploy(TokenVote1202);
   tokenVote1202 = await TokenVote1202.deployed();
   await tokenVote1202.init(SampleToken.address, [1, 2, 3], devAccounts);
 };

@@ -1,10 +1,6 @@
 pragma solidity ^0.4.22;
 
-import "./InterfaceErc1202.sol";
 import "./SampleToken.sol";
-
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
 
 /**
@@ -18,6 +14,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
  */
 contract TokenVote1202 {
     uint[] internal options;
+    mapping(uint => string) internal optionDescMap;
     bool internal isOpen;
     mapping (address => uint256) public weights;
     mapping (uint => uint256) public weightedVoteCounts;
@@ -39,6 +36,10 @@ contract TokenVote1202 {
             address voter = qualifiedVoters_[i];
             weights[voter] = token.balanceOf(voter);
         }
+
+        optionDescMap[1] = "No";
+        optionDescMap[2] = "Issue 100 more token";
+        optionDescMap[3] = "Issue 200 more token";
     }
 
     function vote(uint option) public returns (bool success) {
@@ -85,6 +86,18 @@ contract TokenVote1202 {
             } // else keep it there
         }
         return options[ci];
+    }
+
+    function issueDescription() public pure returns (string desc) {
+        return "Should we issue 100 more token?";
+    }
+
+    function availableOptions() public view returns (uint[] options_) {
+        return options;
+    }
+
+    function optionDescription(uint option) public view returns (string desc) {
+        return optionDescMap[option];
     }
 
     event OnVote(address indexed _from, uint _value);
