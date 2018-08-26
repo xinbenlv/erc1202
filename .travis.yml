@@ -1,0 +1,40 @@
+language: node_js
+
+sudo: required
+
+node_js:
+- "9.3"
+
+env:
+- CXX=g++-4.8
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - build-essential
+    - g++-4.8
+
+before_install:
+- export CXX="g++-4.8"
+- npm install -g npm@latest
+- npm install -g ganache-cli truffle
+
+install:
+- npm install
+
+script:
+- ganache-cli -p 7545 > /dev/null &
+- sleep 5
+- truffle migrate --network=dev --contracts_build_directory="$PWD/build/dev/contracts"
+- truffle test --network=dev
+
+after_success:
+- wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
+- chmod +x send.sh
+- ./send.sh success $DISCORD_WEBHOOK_URL
+after_failure:
+- wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
+- chmod +x send.sh
+- ./send.sh failure $DISCORD_WEBHOOK_URL
