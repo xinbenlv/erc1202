@@ -34,4 +34,5 @@ added placeholders for related session.
 - 2018-07-26: (@evbots) Add meeting notes.
 - 2018-07-30: (@xinbenlv) Add literature research results on security and privacy(secrecy) about voting.
 - 2018-08-15: (@xinbenlv): Add prior art and a few considerations
+- 2019-06-23: (@xinbenlv): Minimize the content of EIP-1202 and publish for comment
  
