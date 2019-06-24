@@ -1,8 +1,6 @@
-This repository holds the examples and proposal draft text for [EIP-1202](https://github.com/ethereum/EIPs/issues/1202)
+This repository is the working directory for [EIP-1202](https://github.com/ethereum/EIPs/issues/1202)
 
-[![Build Status](https://travis-ci.com/xinbenlv/eip-1202-draft.svg?branch=master)](https://travis-ci.com/xinbenlv/eip-1202-draft)
+# Publication and Hosting
+The content of EIP-1202 is officially published in [Ethereum Improvement Proposals (Official Repo) > ERC > 1202](http://eips.ethereum.org/EIPS/eip-1202)
 
-## Install Development Dependencies
-
-1. Node / NPM 
-2. Truffle 
+An active working draft / revision is at [./EIP-1202.md](./EIP-1202.md)
