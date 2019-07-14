@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.5.8;
 
 import "../BasicErc20Token.sol";
 
@@ -23,8 +23,8 @@ contract AdvancedTokenVote1202 {
         optionDescMap[1][2] = "Yes";
     }
 
-    function createIssue(uint issueId, address _tokenAddr, uint[] options_,
-        address[] qualifiedVoters_, string issueDesc_
+    function createIssue(uint issueId, address _tokenAddr, uint[] memory options_,
+        address[] memory qualifiedVoters_, string memory issueDesc_
     ) public {
         require(options_.length >= 2);
         options[issueId] = options_;
@@ -87,15 +87,15 @@ contract AdvancedTokenVote1202 {
         return options[issueId][ci];
     }
 
-    function issueDescription(uint issueId) public view returns (string desc) {
+    function issueDescription(uint issueId) public view returns (string memory desc) {
         return issueDescriptions[issueId];
     }
 
-    function availableOptions(uint issueId) public view returns (uint[] options_) {
+    function availableOptions(uint issueId) public view returns (uint[] memory options_) {
         return options[issueId];
     }
 
-    function optionDescription(uint issueId, uint option) public view returns (string desc) {
+    function optionDescription(uint issueId, uint option) public view returns (string memory desc) {
         return optionDescMap[issueId][option];
     }
 

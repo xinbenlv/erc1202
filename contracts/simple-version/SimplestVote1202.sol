@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.5.8;
 
 
 /**
@@ -59,15 +59,15 @@ contract SimplestVote1202 {
         }
     }
 
-    function issueDescription() public pure returns (string desc) {
+    function issueDescription() public pure returns (string memory desc) {
         return "Should we make John Smith our CEO?";
     }
 
-    function availableOptions() public view returns (uint[] options_) {
+    function availableOptions() public view returns (uint[] memory options_) {
         return options;
     }
 
-    function optionDescription(uint option) public view returns (string desc) {
+    function optionDescription(uint option) public view returns (string memory desc) {
         return optionDescMap[option];
     }
 

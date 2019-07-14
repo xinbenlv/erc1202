@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/xinbenlv/eip-1202-draft"
+    "url": "github.com/xinbenlv/eip-1202"
   },
   "keywords": [
     "ethereum",
@@ -21,11 +21,14 @@
   "author": "Zainan Victor Zhou",
   "license": "MIT",
   "dependencies": {
-    "openzeppelin-solidity": "^1.11.0",
+    "dotenv": "^8.0.0",
+    "openzeppelin-solidity": "^2.3.0",
     "truffle-hdwallet-provider-privkey": "^0.2.0",
     "truffle-test-utils": "^0.1.0"
   },
   "devDependencies": {
+    "ganache-cli": "^6.4.5",
+    "truffle": "^5.0.27",
     "truffle-flattener": "^1.2.5"
   }
 }

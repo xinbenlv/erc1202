@@ -1,8 +1,8 @@
 const SimplestVote1202 = artifacts.require("./simple-version/SimplestVote1202.sol");
-const BasicErc20Token = artifacts.require("./BasicErc20Token.sol");
-const TokenVote1202 = artifacts.require("./simple-version/TokenVote1202.sol");
-
-const AdvancedTokenVote1202 = artifacts.require("./advanced-version/AdvancedTokenVote1202.sol");
+// const BasicErc20Token = artifacts.require("./BasicErc20Token.sol");
+// const TokenVote1202 = artifacts.require("./simple-version/TokenVote1202.sol");
+//
+// const AdvancedTokenVote1202 = artifacts.require("./advanced-version/AdvancedTokenVote1202.sol");
 
 module.exports = async function(deployer) {
 

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.5.8;
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
@@ -22,7 +22,7 @@ contract TokenVote {
     /**
         tokenContract: address to the ERC20 compatible token
      */
-    constructor(address _erc20Addr, uint256[] _options) public {
+    constructor(address _erc20Addr, uint256[] memory _options) public {
         require(options.length >= 2);
         options = _options;
         erc20 = ERC20(_erc20Addr);

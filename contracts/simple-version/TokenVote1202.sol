@@ -1,4 +1,4 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.5.8;
 
 import "../BasicErc20Token.sol";
 
@@ -25,8 +25,8 @@ contract TokenVote1202 {
         tokenContract: address to a smart contract of the OpenZeppelin BasicToken or
                        any ERC-basic token supporting accessing to balances
      */
-    function init(address _tokenAddr, uint[] _options,
-        address[] qualifiedVoters_) public {
+    function init(address _tokenAddr, uint[] memory _options,
+        address[] memory qualifiedVoters_) public {
         require(_options.length >= 2);
         options = _options;
         token = BasicErc20Token(_tokenAddr);
@@ -88,15 +88,15 @@ contract TokenVote1202 {
         return options[ci];
     }
 
-    function issueDescription() public pure returns (string desc) {
+    function issueDescription() public pure returns (string memory desc) {
         return "Should we issue 100 more token?";
     }
 
-    function availableOptions() public view returns (uint[] options_) {
+    function availableOptions() public view returns (uint[] memory options_) {
         return options;
     }
 
-    function optionDescription(uint option) public view returns (string desc) {
+    function optionDescription(uint option) public view returns (string memory desc) {
         return optionDescMap[option];
     }
 

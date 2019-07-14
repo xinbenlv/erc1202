@@ -25,19 +25,17 @@ Here are a few prelimiary literature research result.
  - [https://www.cypherpunks.ca/~iang/pubs/sqlpir-pets.pdf](https://www.cypherpunks.ca/~iang/pubs/sqlpir-pets.pdf)
  - [A practical secret voting scheme for large scale elections, by Atsushi Fujioka et al, 1992](https://dl.acm.org/citation.cfm?id=713943)
  - [SHARVOT: secret SHARe-based VOTing on the blockchain, by Silvia Bartolucci et al, Mar 2018](https://arxiv.org/pdf/1803.04861.pdf)
+ - [A Smart Contract for Boardroom Voting with Maximum Voter Privacy] (https://eprint.iacr.org/2017/110.pdf)
  
 ## Comprehensive Application Examples
 
-### Example 1: Joint Wallet Account Spending Approval
+### Example 1: MutliSig Case: Joint Wallet Account Spending Approval
 // TODO
 
-### Example 2: Secret Vote
+### Example 2: PLCR Case: Secret Vote
 // TODO
 
-### Example 3: Token Re-issue
-// TODO
-
-### Example 4: Multi-input Oracle 
+### Example 3: Custom Follow-up Action Case:  Token Re-issue
 // TODO
 
 
