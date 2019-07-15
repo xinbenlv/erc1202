@@ -19,6 +19,7 @@ addons:
 before_install:
 - export CXX="g++-4.8"
 - npm install -g npm@latest
+- cd impl
 
 install:
 - npm install

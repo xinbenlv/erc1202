@@ -15,7 +15,7 @@ following category:
 3. We are actively working on updating this draft as many feedbacks have come in since it merged into official EIP repo.
 If you are viewing a snapshot of this draft, please be adviced the latest dev version of ERC 1202 can be found [here](https://github.com/xinbenlv/eip-1202-draft/blob/master/EIP-1202.md)
 
-4. Meeting notes from offline conversations can be found [here](meeting-notes/EIP-1202-meeting-notes.md).
+4. Meeting notes from offline conversations can be found [here](impl/meeting-notes/EIP-1202-meeting-notes.md).
 
 ## EIP Work Logs
 
