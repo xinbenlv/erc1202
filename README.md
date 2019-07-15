@@ -1,6 +1,6 @@
 # EIP-1202 Voting Standard Working Repository
 
-[![Build Status](https://travis-ci.com/xinbenlv/eip-1202.svg?branch=master)](https://travis-ci.com/xinbenlv/eip-1202)
+[![Build Status](https://travis-ci.com/xinbenlv/eip-1202.svg?branch=master)](https://travis-ci.com/xinbenlv/eip-1202) [![CircleCI](https://circleci.com/gh/xinbenlv/eip-1202/tree/master.svg?style=svg)](https://circleci.com/gh/xinbenlv/eip-1202/tree/master)
 
 This repository is the working directory for [EIP-1202](https://github.com/ethereum/EIPs/issues/1202)
 
