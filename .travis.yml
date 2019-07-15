@@ -24,10 +24,10 @@ install:
 - npm install
 
 script:
-- npx ganache-cli -p 7545 > /dev/null &
+- npx ganache-cli -p 7545 -i 5777 > /dev/null &
 - sleep 5 # wait for the system to run up.
-- npx truffle migrate --network=dev --contracts_build_directory="$PWD/build/dev/contracts"
-- npx truffle test --network=dev
+- npx truffle migrate --network=development --contracts_build_directory="$PWD/build/dev/contracts"
+- npx truffle test --network=development test/**/*.js
 
 #after_success:
 #- wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
