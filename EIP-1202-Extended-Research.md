@@ -1,5 +1,29 @@
 # EIP 1202 Extended Research
 
+## Summary of Discussions
+
+### Early Feedback Questions (2018-07-08)
+Here are a few early questions I'd like to ask people here.
+1. Have we had any duplicated EIPs that I overlooked. If not, have anyone attempted to do so, and why it did not continue to exist? 
+**Answer**: We concluded there is no duplicated efforts working on creating a voting standard.
+
+2. Should each issue have its own smart contract address (like individual item on [EIP-721](https://eips.ethereum.org/EIPS/eip-721)) or should it support multiple items in [EIP-1155](https://eips.ethereum.org/EIPS/eip-1155), or should it support multi-class voting in [EIP-1178](https://eips.ethereum.org/EIPS/eip-1178), [EIP-1203](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1203.md) (e.g. certain issue can override another issue) 
+**Answer**: We will provide examples of both and seek comments.
+
+3. Should the voting support proxy(e.g [EIP-897](https://eips.ethereum.org/EIPS/eip-897), [EIP-1167](https://eips.ethereum.org/EIPS/eip-1167)) and migration? What are potential security concerns
+**Answer**: It shall not be determined by this ERC.
+
+4. Should it be proposed in a single phase standard or multiple separate into multiple phase, with earlier phase supporting easiest and simplest interface, and later phase supporting more advanced interfaces? (I intuitively believe it will be the latter, but not sure if it might be possible to do it all-at once.)
+**Answer**: It will unavoidably require upgrade in the future, but supporting multiple issue multiple options will be good enough so far.
+
+1. Should it support or optionally support [EIP-165](https://eips.ethereum.org/EIPS/eip-165)? For public voting, support EIP-165 make it easier to discover, but for secret voting people might not want to disclose a voting for certain issue even exist.
+**Answer**: It shall not be determined by this ERC. 
+
+### Second Feedback Questions 2018-07-19
+1. Is it technically possible to achieve anonymous voting on current Ethereum/EVM setup, is it possible that people either hide their identity, or hide what selection they made in a vote given that for a smart contract the public states are visible from block history directly, and internal private state can be replied in any fullnode?
+
+2. number byte length: for simplicity we are using `uint` anywhere undecided. We need to decided what number byte length should we use for `weights` and `options`.
+
 ## Extended Bibliography
 
 ### Worthnoting Academic Papers
