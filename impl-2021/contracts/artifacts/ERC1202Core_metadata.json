@@ -1,0 +1,152 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "issueId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "optionIds",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "voterAddr",
+						"type": "address"
+					}
+				],
+				"name": "OnVote",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_limit",
+						"type": "uint256"
+					}
+				],
+				"name": "topOptions",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_optionIds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "vote",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Zainan Victor Zhou <zzn@zzn.im> ",
+			"details": "Each ERC1202 contract is a cluster of issues being voted on, or done voted.      Any contract of ERC1202 **MUST** implement ALL the following methods and events.       Each *issue* is identified with an `issueId`,      For any given `issue`, each availalbe option in that issue is      identified wtih an `optionId`.",
+			"events": {
+				"OnVote(uint256,uint256[],address)": {
+					"details": "This event is emitted when a vote has been casted.",
+					"params": {
+						"issueId": "the issue the vote is being cased on.",
+						"optionIds": "an ordered list of the options the vote is casting for."
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"topOptions(uint256,uint256)": {
+					"details": "Query the top ranked options of an issue given issueId and       a limit of max number of top options.",
+					"params": {
+						"_issueId": ": the issue being queried for the top options.",
+						"_limit": ": the max number of top options the caller expect to return."
+					},
+					"returns": {
+						"_0": "an ordered list of the top options for given issueId and limit,          where the first in array is the most favorite one, and the last in          array is the least favorite one among the list.         Specifically, WHEN limit = 0, returns the default length of winning         options in their ranking in an issue. "
+					}
+				},
+				"vote(uint256,uint256[])": {
+					"details": "Cast a vote for an issue with `issueId` for option with `optionId`",
+					"params": {
+						"_issueId": ": the issue this vote is casting on.",
+						"_optionIds": ": an *ordered* array of the options being casted for the issue.   Whenever referring to the options as a whole, the order MUST be maintained."
+					},
+					"returns": {
+						"_0": "a boolean if TRUE means the vote is casted successfully. "
+					}
+				}
+			},
+			"title": "Core interface of ERC1202: A list of *REQUIRED* methods and events for         a contract to be considered conforming to ERC1202.  ",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Users/zzn/ws/eip-1202/impl-2021/contracts/IERC1202.sol": "ERC1202Core"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Users/zzn/ws/eip-1202/impl-2021/contracts/IERC1202.sol": {
+			"keccak256": "0xe8d9750629d64ed824f5693bc6f27c96f8f2509e62ff41e5114a702a2d7567d8",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://74ef315bd60250ee5a0275c7d1c618acfc8c0c637b7ec987e89333426e10bfef",
+				"dweb:/ipfs/QmShb1ZRwA6KXZLmjbDFzYW5ZVeC3JRLmzfyNc4vTgXs4M"
+			]
+		}
+	},
+	"version": 1
+}

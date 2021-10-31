@@ -1,0 +1,216 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "issueId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "optionIds",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "voterAddr",
+						"type": "address"
+					}
+				],
+				"name": "OnVote",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "results",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "topOptions",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_optionIds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "vote",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "voted",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "votes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"vote(uint256,uint256[])": {
+					"details": "Cast a vote for an issue with `issueId` for option with `optionId`",
+					"params": {
+						"_issueId": ": the issue this vote is casting on.",
+						"_optionIds": ": an *ordered* array of the options being casted for the issue.   Whenever referring to the options as a whole, the order MUST be maintained."
+					},
+					"returns": {
+						"_0": "a boolean if TRUE means the vote is casted successfully. "
+					}
+				}
+			},
+			"title": "Type 0 voting standard of ERC1202, a cluster of **Single-Input-Single-Output Issue**: For every issue of this contract, it allows a vote with exactly 1 option from a voter. The output is only and always a signle winning option.  NOTE: DO NOT USE IN PRODUCTION.       This sample contract is for demonstration purpose.        It has been optimized for readability.       A real production should conduct security audit and optimize for gas fees.       DO NOT USE IN PRODUCTION.",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/contracts/ERC1202Type0.sol": "ERC1202Type0"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/contracts/ERC1202Type0.sol": {
+			"keccak256": "0x9403700293727393896e810522fa015ee16aa024175ec8cdae4a31f468710485",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5363b6d7412217dbb1f924afbc02a871b5b204fb676cb611a4ff95c85e0f9646",
+				"dweb:/ipfs/QmZfnAfLB2nDoqhPakzNdhNCVXCje6LaktLJitfpxcTFh2"
+			]
+		},
+		"localhost/contracts/IERC1202.sol": {
+			"keccak256": "0xe8d9750629d64ed824f5693bc6f27c96f8f2509e62ff41e5114a702a2d7567d8",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://74ef315bd60250ee5a0275c7d1c618acfc8c0c637b7ec987e89333426e10bfef",
+				"dweb:/ipfs/QmShb1ZRwA6KXZLmjbDFzYW5ZVeC3JRLmzfyNc4vTgXs4M"
+			]
+		}
+	},
+	"version": 1
+}

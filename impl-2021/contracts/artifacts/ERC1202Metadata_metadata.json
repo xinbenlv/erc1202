@@ -1,0 +1,148 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "issueText",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_text",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					}
+				],
+				"name": "issueURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_uri",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_optionId",
+						"type": "uint256"
+					}
+				],
+				"name": "optionText",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_text",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_optionId",
+						"type": "uint256"
+					}
+				],
+				"name": "optionURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "_uri",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Zainan Victor Zhou <zzn@zzn.im>",
+			"kind": "dev",
+			"methods": {
+				"issueURI(uint256)": {
+					"details": "Throws if `_issueId` is not a valid issue;       URIs are defined in RFC 3986. "
+				},
+				"optionURI(uint256,uint256)": {
+					"details": "Throws if `_issueId` is not a valid option-issue combination;       URIs are defined in RFC 3986. "
+				}
+			},
+			"title": "Metadata interface for ERC1202: A list of *RECOMMENDED* methods and events for         a contract to be considered conforming to ERC1202. ",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"issueText()": {
+					"notice": "A descriptive text for an issue in this contract."
+				},
+				"issueURI(uint256)": {
+					"notice": "A distinct Uniform Resource Identifier (URI) for a given issue."
+				},
+				"optionText(uint256,uint256)": {
+					"notice": "A descriptive text for an option in an issue in this contract."
+				},
+				"optionURI(uint256,uint256)": {
+					"notice": "A distinct Uniform Resource Identifier (URI) for a given option in a given issue."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Users/zzn/ws/eip-1202/impl-2021/contracts/IERC1202.sol": "ERC1202Metadata"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Users/zzn/ws/eip-1202/impl-2021/contracts/IERC1202.sol": {
+			"keccak256": "0xe8d9750629d64ed824f5693bc6f27c96f8f2509e62ff41e5114a702a2d7567d8",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://74ef315bd60250ee5a0275c7d1c618acfc8c0c637b7ec987e89333426e10bfef",
+				"dweb:/ipfs/QmShb1ZRwA6KXZLmjbDFzYW5ZVeC3JRLmzfyNc4vTgXs4M"
+			]
+		}
+	},
+	"version": 1
+}

@@ -6,8 +6,8 @@ import "./IERC1202.sol";
 
 /**
  * @title Type 1 voting standard of ERC1202, a cluster of **Multiple-Input-Multiple-Output Issue**:
- * For every issue of this contract, it allows a vote with exactly 1 option from a voter.
- * The output is only and always a signle winning option.
+ * For every issue of this contract, it allows a vote with more than 1 options from a voter.
+ * The output is more than 1 winning options as ranked from index = 0.
  * 
  * NOTE: DO NOT USE IN PRODUCTION.
  *       This sample contract is for demonstration purpose. 

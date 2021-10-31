@@ -16,8 +16,11 @@ import "./IERC1202.sol";
  *       DO NOT USE IN PRODUCTION.
  */ 
 contract ERC1202Type0 is ERC1202Core {
+    
+    // The max option id (exclusive). For example, if OPTION_ID_UPPER_BOUND = 8, then Option can be {0, 1, 2..., 6, 7}
     uint constant OPTION_ID_UPPER_BOUND = 8;
         
+    mapping(uint /*issueId*/ => mapping(address /*voterAddr*/ => mapping(uint /*optionId*/ => bool))) public voted;
     mapping(uint /*issueId*/ => mapping(address /*voterAddr*/ => uint /*optionId*/  )) public votes;
     mapping(uint /*issueId*/ => mapping(uint /*optionId*/  => uint /*voteCount*/ )) public results;
     
@@ -25,9 +28,15 @@ contract ERC1202Type0 is ERC1202Core {
         assert(_optionIds.length == 1);
         assert(_optionIds[0] < OPTION_ID_UPPER_BOUND);
         uint newVotedOptionId = _optionIds[0];
+
         uint oldVotedOptionId = votes[_issueId][msg.sender];
-        results[_issueId][oldVotedOptionId]--;
+        if (voted[_issueId][msg.sender][oldVotedOptionId]) {
+            results[_issueId][oldVotedOptionId]--;
+            voted[_issueId][msg.sender][oldVotedOptionId] = false;
+        }
+
         results[_issueId][newVotedOptionId]++;
+        voted[_issueId][msg.sender][newVotedOptionId] = true;
         votes[_issueId][msg.sender] = _optionIds[0];
         emit OnVote(_issueId, _optionIds, msg.sender);
         return true;

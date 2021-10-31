@@ -1,0 +1,173 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "issueId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "bool",
+						"name": "isOpen",
+						"type": "bool"
+					}
+				],
+				"name": "OnStatusChange",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					}
+				],
+				"name": "getStatus",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_isOpen",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "_isOpen",
+						"type": "bool"
+					}
+				],
+				"name": "setStatus",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "_success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_issueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_voter",
+						"type": "address"
+					}
+				],
+				"name": "voteOf",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_optionIds",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Zainan Victor Zhou <zzn@zzn.im>",
+			"events": {
+				"OnStatusChange(uint256,bool)": {
+					"details": "This event is emitted when an issue has changed status.",
+					"params": {
+						"isOpen": "the status",
+						"issueId": "the issue about which a status change has happend."
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"getStatus(uint256)": {
+					"details": "Gets the status of a issue, e.g. open for vote or closed for result.",
+					"params": {
+						"_issueId": "the issue of Status being get."
+					},
+					"returns": {
+						"_isOpen": "the status of the issue."
+					}
+				},
+				"setStatus(uint256,bool)": {
+					"details": "Sets the status of a issue, e.g. open for vote or closed for result.",
+					"params": {
+						"_isOpen": "the status to set.",
+						"_issueId": "the issue of Status being set."
+					},
+					"returns": {
+						"_success": "whether the setStatus option succeeded."
+					}
+				},
+				"voteOf(uint256,address)": {
+					"details": "Retrieves the ranked options voted by a given voter for a given issue.",
+					"params": {
+						"_issueId": "the issue",
+						"_voter": "the aaddres of voter."
+					},
+					"returns": {
+						"_optionIds": "the ranked options voted by voter."
+					}
+				}
+			},
+			"title": "Status interface for ERC1202: A list of *RECOMMENDED* methods and events for         a contract to be considered conforming to ERC1202. ",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Users/zzn/ws/eip-1202/impl-2021/contracts/IERC1202.sol": "ERC1202Status"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Users/zzn/ws/eip-1202/impl-2021/contracts/IERC1202.sol": {
+			"keccak256": "0xe8d9750629d64ed824f5693bc6f27c96f8f2509e62ff41e5114a702a2d7567d8",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://74ef315bd60250ee5a0275c7d1c618acfc8c0c637b7ec987e89333426e10bfef",
+				"dweb:/ipfs/QmShb1ZRwA6KXZLmjbDFzYW5ZVeC3JRLmzfyNc4vTgXs4M"
+			]
+		}
+	},
+	"version": 1
+}
