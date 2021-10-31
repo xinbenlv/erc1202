@@ -16,7 +16,7 @@ import "./IERC1202.sol";
  *       DO NOT USE IN PRODUCTION.
  */ 
 contract ERC1202Type0 is ERC1202Core {
-    
+
     // The max option id (exclusive). For example, if OPTION_ID_UPPER_BOUND = 8, then Option can be {0, 1, 2..., 6, 7}
     uint constant OPTION_ID_UPPER_BOUND = 8;
         
