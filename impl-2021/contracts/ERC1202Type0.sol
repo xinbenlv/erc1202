@@ -8,6 +8,13 @@ import "./IERC1202.sol";
  * @title Type 0 voting standard of ERC1202, a cluster of **Single-Input-Single-Output Issue**:
  * For every issue of this contract, it allows a vote with exactly 1 option from a voter.
  * The output is only and always a signle winning option.
+ * Rules:
+ *  1. everyone has equal weights
+ *  2. everyone can vote, no voter-qualitifications setup needed.
+ *  3. every vote has 1 and only 1 option.
+ *  4. options with most votes are the winner
+ *  5. there is no limit of time
+ *  6. when tied, the earlier index of options won
  * 
  * NOTE: DO NOT USE IN PRODUCTION.
  *       This sample contract is for demonstration purpose. 

@@ -17,13 +17,27 @@ contract("ERC1202Type0Test", function (accounts) {
     return assert.isTrue(true);
   });
 
+  it("should reject a vote with multiple options", async function () {
+    return assert.isTrue(true);
+  });
+
   it("should handle simple single vote: 7 -> 7", 
   async function () {
 
     // Setup 1 account.
     const accountOne = accounts[0];
 
-    await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7], {from: accountOne});
+    // event OnVote(uint indexed issueId, uint[] optionIds, address indexed voterAddr);
+    // Examine an OnVote event is correctly emitted.
+    const txRecord = await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7], {from: accountOne});
+    eq(txRecord.logs.length, 1);
+    eq(txRecord.logs[0].event, "OnVote");
+    eq(txRecord.logs[0].args[0].toNumber(), 1); // issueId
+    eq(txRecord.logs[0].args[1][0].toNumber(), 7); // [optionId]
+    eq(txRecord.logs[0].args[1].length, 1); // optionIds.length
+    eq(txRecord.logs[0].args[2], accounts[0]); // voterAddr
+
+
     const topOptions = (await erc1202Type0.topOptions(1/*issueId*/, /*limit*/1));
     const wonOption = topOptions[0];
     const wonOptionNum = wonOption.toNumber();
@@ -32,7 +46,6 @@ contract("ERC1202Type0Test", function (accounts) {
 
   it("should handle 3 votes correctly: 7,4,4 -> 4", 
   async function () {
-
     await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7], {from: accounts[0]});
     await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[4], {from: accounts[1]});
     await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[4], {from: accounts[2]});
@@ -87,4 +100,5 @@ contract("ERC1202Type0Test", function (accounts) {
     const wonOptionNum = wonOption.toNumber();
     eq(wonOptionNum, 3);
   });
+
 });

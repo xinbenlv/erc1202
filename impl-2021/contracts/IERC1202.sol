@@ -40,7 +40,6 @@ interface ERC1202Core {
     /// @param issueId the issue the vote is being cased on.
     /// @param optionIds an ordered list of the options the vote is casting for.
     event OnVote(uint indexed issueId, uint[] optionIds, address indexed voterAddr);
-
 }
 
 /// @title Metadata interface for ERC1202: A list of *RECOMMENDED* methods and events for 
