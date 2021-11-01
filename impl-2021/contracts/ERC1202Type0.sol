@@ -32,8 +32,8 @@ contract ERC1202Type0 is ERC1202Core {
     mapping(uint /*issueId*/ => mapping(uint /*optionId*/  => uint /*voteCount*/ )) public results;
     
     function vote(uint _issueId, uint[] memory _optionIds) override external returns (bool)  {
-        assert(_optionIds.length == 1);
-        assert(_optionIds[0] < OPTION_ID_UPPER_BOUND);
+        require(_optionIds.length == 1, "When voting, only one option is allowed.");
+        require(_optionIds[0] < OPTION_ID_UPPER_BOUND, "Option Id should all be smaller than OPTION_ID_UPPER_BOUND.");
         uint newVotedOptionId = _optionIds[0];
 
         uint oldVotedOptionId = votes[_issueId][msg.sender];

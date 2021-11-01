@@ -1,5 +1,6 @@
 const ERC1202Type0 = artifacts.require("ERC1202Type0");
 const eq = assert.equal.bind(assert);
+const truffleAssert = require('truffle-assertions');
 
 /*
  * uncomment accounts to access the test accounts made available by the
@@ -13,23 +14,36 @@ contract("ERC1202Type0Test", function (accounts) {
     await ERC1202Type0.deployed();
   });
 
-  it("should assert true", async function () {
-    return assert.isTrue(true);
+  it("should reject a vote with multiple options or zero options", async function () {
+    truffleAssert.fails(erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7, 8], {from: accounts[0]}),
+      truffleAssert.ErrorType.REVERT,
+        "When voting, only one option is allowed."
+    );
+
+    truffleAssert.fails(erc1202Type0.vote(/*issueId*/1, /*optionIds*/[], {from: accounts[0]}),
+    truffleAssert.ErrorType.REVERT,
+      "When voting, only one option is allowed."
+    );
   });
 
-  it("should reject a vote with multiple options", async function () {
-    return assert.isTrue(true);
+  it("should reject a vote with option larger than 8", async function () {
+    truffleAssert.fails(
+      erc1202Type0.vote(/*issueId*/1, /*optionIds*/[8], {from: accounts[0]}),
+      truffleAssert.ErrorType.REVERT
+    );
+    truffleAssert.fails(
+      erc1202Type0.vote(/*issueId*/1, /*optionIds*/[9], {from: accounts[0]}),
+      truffleAssert.ErrorType.REVERT
+    );
   });
 
   it("should handle simple single vote: 7 -> 7", 
   async function () {
 
-    // Setup 1 account.
-    const accountOne = accounts[0];
-
     // event OnVote(uint indexed issueId, uint[] optionIds, address indexed voterAddr);
     // Examine an OnVote event is correctly emitted.
-    const txRecord = await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7], {from: accountOne});
+    const txRecord = await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7], {from: accounts[0]});
+
     eq(txRecord.logs.length, 1);
     eq(txRecord.logs[0].event, "OnVote");
     eq(txRecord.logs[0].args[0].toNumber(), 1); // issueId
