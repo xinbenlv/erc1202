@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node:14.17.5
       - image: trufflesuite/ganache-cli
-        command: ganache-cli -i 5777 -p 7545
+        command: ganache-cli -i 5777 -p 8545
     steps:
       - checkout:
           path: "~/repo"
