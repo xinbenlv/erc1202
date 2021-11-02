@@ -27,6 +27,7 @@
     "truffle-test-utils": "^0.1.0"
   },
   "devDependencies": {
+    "circleci": "^0.3.3",
     "ganache-cli": "^6.4.5",
     "truffle": "^5.4.17",
     "truffle-flattener": "^1.2.5"
