@@ -12,7 +12,7 @@
             "txHash": "0x",
             "files": [],
             "workingDirectory": "${workspaceFolder}",
-            "providerUrl": "http://127.0.0.1:8545"
+            "providerUrl": "http://127.0.0.1:7545"
         }
     ]
 }
