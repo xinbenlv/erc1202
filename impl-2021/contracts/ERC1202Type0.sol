@@ -66,7 +66,7 @@ contract ERC1202Type0 is ERC1202Core, ERC1202Metadata, ERC1202Status {
     }
 
     // --------------- ERC1202Metadata ----------------
-    function issueText() override external pure returns (string memory _text) {
+    function issueText(uint256 _issueId) override external pure returns (string memory _text) {
         return "placeholder text";
     }
 

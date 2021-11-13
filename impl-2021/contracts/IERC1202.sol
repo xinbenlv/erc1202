@@ -49,7 +49,7 @@ interface ERC1202Core {
 interface ERC1202Metadata {
 
     /// @notice A descriptive text for an issue in this contract.
-    function issueText() external view returns (string memory _text);
+    function issueText(uint256 _issueId) external view returns (string memory _text);
 
     /// @notice A distinct Uniform Resource Identifier (URI) for a given issue.
     /// @dev Throws if `_issueId` is not a valid issue; 
