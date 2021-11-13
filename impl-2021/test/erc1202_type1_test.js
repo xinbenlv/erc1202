@@ -7,13 +7,13 @@ const truffleAssert = require('truffle-assertions');
  * Ethereum client
  * See docs: https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript
  */
-contract("ERC1202Type0Test", function (accounts) {
+contract("ERC1202Type0Test ERC1202Core", function (accounts) {
   let erc1202Type0;
   beforeEach(async function(){
     erc1202Type0= await ERC1202Type0.new();
     await ERC1202Type0.deployed();
   });
-
+  
   it("should reject a vote with multiple options or zero options", async function () {
     truffleAssert.fails(erc1202Type0.vote(/*issueId*/1, /*optionIds*/[7, 8], {from: accounts[0]}),
       truffleAssert.ErrorType.REVERT,
@@ -114,5 +114,53 @@ contract("ERC1202Type0Test", function (accounts) {
     const wonOptionNum = wonOption.toNumber();
     eq(wonOptionNum, 3);
   });
+});
 
+contract("ERC1202Type0Test ERC1202Status", function (accounts) {
+  let erc1202Type0;
+  beforeEach(async function(){
+    erc1202Type0= await ERC1202Type0.new();
+    await ERC1202Type0.deployed();
+  });
+  
+  it("all polls are always open", async function() {
+    for (let i = 0; i < 256; i++) {
+      eq(await erc1202Type0.getStatus(/*issueId*/i), true, '');
+    }
+  });
+  
+  it("all polls status are not settable", async function() {
+    for (let i = 0; i < 256; i++) {
+      try {
+        await erc1202Type0.setStatus(/*issueId*/i, true);
+        throw "there should be exception when setting status.";
+      } catch (error) {
+        // expected.
+      }
+    }
+  });
+
+  it("voteOf should work as expectd.", async function() {
+    // eq(await erc1202Type0.voteOf(/*issueId*/1, accounts[1]), [0]);
+    let account5 = accounts[5];
+    await erc1202Type0.vote(/*issueId*/1, /*optionIds*/[3], {from: account5});
+    let results = await erc1202Type0.voteOf(/*issueId*/1, account5);
+    eq(results.length, 1);
+    eq(results[0], 3);
+  });
+});
+
+contract("ERC1202Type0Test ERC1202Metadata", function (accounts) {
+  let erc1202Type0;
+  beforeEach(async function(){
+    erc1202Type0= await ERC1202Type0.new();
+    await ERC1202Type0.deployed();
+  });
+  
+  it("should have correct Metadata", async function() {
+    eq(await(erc1202Type0.issueText(1), "placeholder text"));
+    // eq(await(erc1202Type0.issueURI(1), "https://pixabay.com/get/gb31bb3a2975f74f66ddd03ae360b14a596ed2e960154939ef812e998d138564b3081e88645bc6c06494eec831213978205fba62fee1f76eccf3727810b7b593af4000c6968ec5e3113b3d9fb76f27cc3_640.jpg"));
+    // eq(await(erc1202Type0.optionText(1, 1), "Poll option"));
+    // eq(await(erc1202Type0.optionURI(1, 1), "https://example-poll.com/poll_option"));
+  });
 });
