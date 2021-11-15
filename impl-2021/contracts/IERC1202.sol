@@ -34,7 +34,10 @@ interface ERC1202Core {
     ///         options in their ranking in an issue. 
     function topOptions(
         uint _issueId, uint _limit
-        ) external view returns (uint[] memory);
+        ) 
+            external
+            view
+            returns (uint[] memory);
     
     /// @dev This event is emitted when a vote has been casted.
     /// @param issueId the issue the vote is being cased on.
@@ -47,6 +50,8 @@ interface ERC1202Core {
 ///
 /// @author Zainan Victor Zhou <zzn@zzn.im>
 interface ERC1202Metadata {
+    /// @notice A method to generate 
+    function availableOptions(uint256 issueId) external view returns (uint[] memory);
 
     /// @notice A descriptive text for an issue in this contract.
     function issueText(uint256 _issueId) external view returns (string memory _text);

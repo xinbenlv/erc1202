@@ -24,7 +24,7 @@ import "./IERC1202.sol";
  */ 
 contract ERC1202Type0 is ERC1202Core, ERC1202Metadata, ERC1202Status {
 
-    // The max option id (exclusive). For example, if OPTION_ID_UPPER_BOUND = 8, then Option can be {0, 1, 2..., 6, 7}
+    // The max option id (exclusive). For example, if OPTION_ID_UPPER_BOUND = 8, then Option can be {0, 1, 2..., 6, 7}, 0 is reserved for "unknown"
     uint constant OPTION_ID_UPPER_BOUND = 8;
     uint constant MAX_ISSUE_ID = 256; // exclusive
 
@@ -52,7 +52,11 @@ contract ERC1202Type0 is ERC1202Core, ERC1202Metadata, ERC1202Status {
 
     function topOptions(
         uint _issueId, uint /*_limit*/
-        ) override external view returns (uint[] memory) {
+        ) 
+            override
+            external
+            view 
+            returns (uint[] memory) {
         validateIssue(_issueId);
         uint mostVotedOption = 0;
         for (uint i=0; i<OPTION_ID_UPPER_BOUND; i++) {
@@ -66,6 +70,14 @@ contract ERC1202Type0 is ERC1202Core, ERC1202Metadata, ERC1202Status {
     }
 
     // --------------- ERC1202Metadata ----------------
+    function availableOptions(uint256 issueId) override external pure returns (uint[] memory) {
+        uint[] memory result = new uint[](OPTION_ID_UPPER_BOUND);
+        for (uint i = 1; i < OPTION_ID_UPPER_BOUND; i++) {
+            result[i-1] = i;
+        }
+        return result;
+    }
+
     function issueText(uint256 _issueId) override external pure returns (string memory _text) {
         return "placeholder text";
     }
