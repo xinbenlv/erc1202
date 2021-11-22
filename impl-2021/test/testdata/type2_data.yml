@@ -1,0 +1,64 @@
+- case: 'simple #1: 1 voters, 1 options'
+  input:
+    - voter: 1
+      issue: 1
+      options: [1]
+  output:
+    - issue: 1
+      limit: 1
+      won: [1]
+
+- case: 'simple #2: 3 voters, 3 options'
+  input:
+    - voter: 1
+      issue: 1
+      options: [1, 2]
+    - voter: 2
+      issue: 1
+      options: [2, 3]
+    - voter: 3
+      issue: 1
+      options: [1, 2]
+# A, B
+# B, C
+# A, B
+
+# First Preferences
+# A - 2 votes
+# B - 1 votes
+Won A
+
+# A, B, D, C
+# B, D, A, C
+# D, A, B,
+# A, C, B
+# B, D, C
+
+# First Round
+# A: 2 votes
+# B: 2 votes
+# D: 1 votes
+
+# Second Round
+# D: 1 votes -> A
+
+# A: 3 votes
+# B: 2 votes
+
+# Won: A
+
+
+
+
+
+
+  output:
+    - issue: 1
+      limit: 3
+      won: [2, 1, 3]
+    - issue: 1
+      limit: 2
+      won: [2, 1]
+    - issue: 1
+      limit: 1
+      won: [1]

@@ -14,6 +14,7 @@
   "dependencies": {
     "sloc": "^0.2.1",
     "truffle": "^5.4.17",
-    "truffle-assertions": "^0.9.2"
+    "truffle-assertions": "^0.9.2",
+    "yaml": "^1.10.2"
   }
 }
