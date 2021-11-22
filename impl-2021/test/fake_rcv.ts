@@ -1,68 +1,137 @@
-
-let eliminateCandidates = function (ballots) {
-    let voteCountsByCandidate = {}, voterByCandidate = {};
-    printBallots(ballots);
-
-    for (let voter in ballots) {
-        let ballot = ballots[voter];
-        let candidateIndex = ballot[0];
-        if (!voteCountsByCandidate[candidateIndex]) voteCountsByCandidate[candidateIndex] = 0;
-        if (!voterByCandidate[candidateIndex]) voterByCandidate[candidateIndex] = [];
-        voteCountsByCandidate[candidateIndex]++;
-        voterByCandidate[candidateIndex].push(voter);
+class Voter {
+    public index:number;
+    constructor(i) {
+        this.index = i;
     }
-
-    // check if one wins
-    let sortedCandidates = Object.keys(voteCountsByCandidate)
-        .sort((candidateA, candidateB)=> voteCountsByCandidate[candidateB] - voteCountsByCandidate[candidateA]);
-    sortedCandidates.forEach(cIndex => console.log(`Candidate ${getCandidateName(parseInt(cIndex))}, received votes: ${voteCountsByCandidate[cIndex]}`));
-    let eliminatedCandidateIndex = sortedCandidates[sortedCandidates.length - 1];
-    console.log(`Eliminating Candidate: ${getCandidateName(parseInt(eliminatedCandidateIndex))}, whose votes are from Voter ${voterByCandidate[eliminatedCandidateIndex]}`);
-    for (let voter of voterByCandidate[eliminatedCandidateIndex]) {
-        let ballot = ballots[voter];
-        console.log(`Voter ${voter}'s previous preference is eliminated, they voted ${ballotToString(ballots[voter])}`);
-        ballot.splice(0, 1); // slice first preference
-        if (ballot.length == 0) {
-            continue;
-        } else {
-            let nextCandidateOnTheBallot = ballot[0];
-            console.log(`The next on the voter ${voter}'s ballot is candidate ${getCandidateName(nextCandidateOnTheBallot)}`);
-            if(!voteCountsByCandidate[nextCandidateOnTheBallot]) voteCountsByCandidate[nextCandidateOnTheBallot] = 0;
-            voteCountsByCandidate[nextCandidateOnTheBallot] ++;
+    public toString():string {
+        return `Voter ${this.index}`;
+    }
+}
+class Candidate {
+    public index:number;
+    constructor(i) {
+        this.index = i;
+    }
+    public name():string {
+        return String.fromCharCode("A".charCodeAt(0) + this.index - 1);;
+    }
+    public toString():string {
+        return `Candidate ${this.name()}`;
+    }
+}
+class Ballot {
+    public voter:Voter;
+    public candidates:Candidate[];
+    constructor(voter:Voter, candidates:Candidate[]) {
+        this.voter = voter;
+        this.candidates = candidates;
+        console.assert(candidates);
+        let _set = new Set(this.candidates.map(c=>c.index));
+        console.assert(_set.size == this.candidates.length); // DEV ASSERT no candidate were voted twice
+    }
+    public static createFromArray(voterIndex:number, candidateIndices:number[]) {
+        let voter:Voter = new Voter(voterIndex);
+        let candidateList:Candidate[] = candidateIndices.map(cIndex => new Candidate(cIndex));
+        console.assert(candidateIndices);
+        return new Ballot(voter, candidateList);
+    }
+    public static createFromArrayOfArray(arrayOfArray:number[][]):Ballot[] {
+        let ballots:Ballot[] = [];
+        for (let voterIndex = 0; voterIndex < arrayOfArray.length; voterIndex++) {
+            let ballot = Ballot.createFromArray(voterIndex, arrayOfArray[voterIndex]);
+            ballots.push(ballot);
         }
+        return ballots;
     }
-    delete voteCountsByCandidate[eliminatedCandidateIndex]; // eliminated
-    // Before starting next round
-    sortedCandidates = Object.keys(voteCountsByCandidate)
-        .sort((candidateA, candidateB)=> voteCountsByCandidate[candidateB] - voteCountsByCandidate[candidateA]);
-    console.log(`Candidate ranked by vote at round ${0}:`);
-    sortedCandidates.forEach(cIndex => console.log(`Candidate ${getCandidateName(parseInt(cIndex))}, received votes: ${voteCountsByCandidate[cIndex]}`));
-    console.log(`current ballots:`); // Print
-    printBallots(ballots);
-    return {
-        newBallots: JSON.parse(JSON.stringify(ballots)), 
-        sortedCandidates,
-        voteCountsByCandidate,
-    };
-}
-
-let printBallots = function (ballots) {
-    for (let voter in ballots) {
-        let ballot = ballots[voter];
-        let candidateIndex = ballot[0];
-        console.log(`Voter ${voter} casted a Ballot w/ Raw Data:${ballot}, neaming ${ballotToString(ballot)}`);
+    public toString():string {
+        return `The ${this.voter} voted ${this.candidates}`;
     }
 }
-let ballotToString = function (ballot) {
-    return ballot.map(cIndex => getCandidateName(parseInt(cIndex)));
-}
 
-let getCandidateName = (candidateIndex:number) => {
-    return String.fromCharCode("A".charCodeAt(0) + candidateIndex - 1);;
-}
+class Election {
+    public ballots:Ballot[];
+    public ballotByVoter(voter:Voter) {
+        return this.ballots[voter.index];
+    }
+    constructor(arrayOfArray:number[][]) {
+        this.ballots = Ballot.createFromArrayOfArray(arrayOfArray);
+        let _set = new Set(this.ballots.map(b=>b.voter.index));
+        console.assert(_set.size == this.ballots.length); // DEV ASSERT no voters are double counted.
+    }
 
-export let topOptions = function() {
-    let _preferences = {};
+    private voteCountsByCandidateIndex():Map<number, number> {
+        let _voteCountsByCandidateIndex:Map<number, number> = new Map();
+        for (let ballot of this.ballots) {
+            let firstCandidate:Candidate = ballot.candidates[0];
+            if (!_voteCountsByCandidateIndex.has(firstCandidate.index)) _voteCountsByCandidateIndex.set(firstCandidate.index, 0);
+            _voteCountsByCandidateIndex.set(firstCandidate.index, _voteCountsByCandidateIndex.get(firstCandidate.index) + 1);
+        }
+        return _voteCountsByCandidateIndex;
+    }
+
+    public voteCountByCandidate(candidate:Candidate):number {
+        return this.voteCountsByCandidateIndex().get(candidate.index);
+    }
+
+    public getVotersByCandidate(candidate:Candidate):Voter[] {
+        let _votersByCandidateIndex:Map<number, Voter[]> = new Map();
+        for (let ballot of this.ballots) {
+            let firstCandidate:Candidate = ballot.candidates[0];
+            if (!_votersByCandidateIndex.has(firstCandidate.index)) _votersByCandidateIndex.set(firstCandidate.index, []);
+            _votersByCandidateIndex.get(firstCandidate.index).push(ballot.voter);
+        }
+        return _votersByCandidateIndex.get(candidate.index);
+    }
+
+    public sortedCandidates(): Candidate[] {
+        let _voteCountsByCandidateIndex:Map<number, number> =  this.voteCountsByCandidateIndex();
+        return Array.from(_voteCountsByCandidateIndex.keys())
+            .sort((candidateIndexA:number, candidateIndexB:number)=> _voteCountsByCandidateIndex.get(candidateIndexB) - _voteCountsByCandidateIndex.get(candidateIndexA))
+            .map(i => new Candidate(i));
+    }
+
+    public eleminateLeastFavoriteCandidate = function():Candidate {
+        let _sortedCandidates:Candidate[] = this.sortedCandidates();
+        console.assert(_sortedCandidates, `Error! The _sortedCandidates should not be null or undefined or zero length, but is ${_sortedCandidates}.`);
+        console.log(`Current sortedCandidates by Votes:`);
+        console.log(this.outcomeToString());
+        let eliminatedCandidate:Candidate = _sortedCandidates[_sortedCandidates.length - 1];
+        console.log(`The eliminatedCandidate is `, eliminatedCandidate);
+        console.assert(eliminatedCandidate, `Error! The eliminatedCandidate should not be null or undefined.`);
+        let unluckyVoters:Voter[] = this.getVotersByCandidate(eliminatedCandidate);
+        console.log(`The voterByCandidate is `, unluckyVoters);
+        for (let voter of unluckyVoters) {
+            let ballot:Ballot = this.ballotByVoter(voter);
+            console.log(ballot);
+            ballot.candidates.splice(0, 1); // slice first preference
+            if (ballot.candidates.length == 0) {
+                continue;
+            } else {
+                let nextCandidateOnTheBallot:Candidate = ballot.candidates[0];
+
+            }
+        }
+        return eliminatedCandidate;
+    }
+    public precentByCandidate(candidate:Candidate) {
+        return 100.0 * this.voteCountByCandidate(candidate)/this.ballots.length;
+    }
+
+    public hasOutcome():boolean {
+        let _leadingCandidate = this.sortedCandidates()[0];
+        let _LeadingCount = this.voteCountByCandidate(_leadingCandidate);
+        return (_LeadingCount > 0.5 * this.ballots.length)
+    }
+    public outcomeToString():string {
+        let _sortedCandidates = this.sortedCandidates();
+        return _sortedCandidates
+            .map((c:Candidate) =>`${c} got ${this.voteCountByCandidate(c)} votes ~= ${this.precentByCandidate(c).toFixed(2)}%`)
+            .reduce((a,b) => a+'\n'+b);
+    }
+
+    public toString():string {
+        return `Election with all: ballots:\n${this.ballots.join('\n')}`;
+    }
 }
 
 let main = async () => {
@@ -85,19 +154,19 @@ let main = async () => {
         [4, 1, 2],
         [4, 1, 2],
     ];
-    let ballots = JSON.parse(JSON.stringify(RAW_BALLOTS)); // create a deep copy
+    let election:Election = new Election(RAW_BALLOTS);
+
     let round = 0;
-    while (true) {
+    while (!election.hasOutcome()) {
         console.log(`------------- Round ${round} ------------`)
-        let {newBallots, sortedCandidates, voteCountsByCandidate} = eliminateCandidates(ballots);
-        ballots = JSON.parse(JSON.stringify(newBallots));
-        if (voteCountsByCandidate[sortedCandidates[0]] > 0.5 * RAW_BALLOTS.length) {
-            break;
-        }
+        console.log(`Current ballots: ${election}`);
+        let eleminatedCandidate = election.eleminateLeastFavoriteCandidate();
+        console.log(`Elemented candidate ${eleminatedCandidate}`);
+        console.log(`Outcome`);
+        console.log(election.outcomeToString());
         round ++;
     }
-    console.log(`------------- Final Result ------------`)
-
+    console.log(`------------- Final Result ------------`);
 }
 
 
