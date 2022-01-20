@@ -8,3 +8,5 @@ This repository is the working directory for [EIP-1202](https://github.com/ether
 The content of EIP-1202 is officially published in [Ethereum Improvement Proposals (Official Repo) > ERC > 1202](http://eips.ethereum.org/EIPS/eip-1202)
 
 An active working draft / revision is at [./EIP-1202.md](./EIP-1202.md)
+
+The current active implementation exists under the [./impl-2021.md](./impl-2021.md) directory.

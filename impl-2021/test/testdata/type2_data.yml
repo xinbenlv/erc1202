@@ -26,7 +26,7 @@
 # First Preferences
 # A - 2 votes
 # B - 1 votes
-Won A
+# Won A
 
 # A, B, D, C
 # B, D, A, C
@@ -46,11 +46,6 @@ Won A
 # B: 2 votes
 
 # Won: A
-
-
-
-
-
 
   output:
     - issue: 1
