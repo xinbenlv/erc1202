@@ -1,4 +1,6 @@
-## Welcome to GitHub Pages
+## Welcome to ERC1202 workgroup
+
+The repository is in [Github](https://github.com/xinbenlv/erc1202)
 
 You can use the [editor on GitHub](https://github.com/xinbenlv/erc1202/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
