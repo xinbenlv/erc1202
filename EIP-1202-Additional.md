@@ -47,11 +47,13 @@ This file contains the sections originally contained in the draft of ERC-1202.
 - https://github.com/snapshot-labs/snapshot
 
 #### General Frontend
+
 - https://www.tally.xyz/
 - https://sybil.org/#/delegates/ens
 
 #### Active Blockchain Projects under Governance
-#####  MakerDAO's governance
+
+##### MakerDAO's governance
 
 - [dapp](https://vote.makerdao.com/)
 - [doc](https://docs.makerdao.com/smart-contract-modules/governance-module)
@@ -73,7 +75,7 @@ This file contains the sections originally contained in the draft of ERC-1202.
 
 - [Ethereum DAO: How to build a DEMOCRACY on the blockchain](https://www.ethereum.org/dao)
 - [Carbon Vote](http://carbonvote.com/)
-- [Paper: A Smart Contract for Boardroom Voting with Maximum Voter Privacy](https://eprint.iacr.org/2017/110.pdf) - *Suggested by @aodhgan*
+- [Paper: A Smart Contract for Boardroom Voting with Maximum Voter Privacy](https://eprint.iacr.org/2017/110.pdf) - _Suggested by @aodhgan_
 - [Private Voting for TCR](https://blog.enigma.co/private-voting-for-tcrs-with-enigma-b441b5d4fa7b)
 - [Bribe Protocols](https://www.bribe.xyz/)
 - https://github.com/mohamedsgap/voting-dapp/blob/master/contracts/Election.sol
