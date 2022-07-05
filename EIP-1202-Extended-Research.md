@@ -2,6 +2,34 @@
 
 ## Summary of Discussions
 
+## Functionalities
+
+### Voting Primitives
+
+#### Options of Proposal
+
+- Yay/Nay, Yay/Nay/Abstain, Yay/Nay/Abstain/
+- Multi-options: Equal / Ordered
+
+#### Eligibility and Weights
+
+- How is weight/eligibility calculated?
+- How to lock weights/eligibility to avoid double voting?
+
+#### Begin, End, Winning, Ties
+
+- How to represent period of voting?
+- How to declare winning of voting?
+
+#### Proposals
+
+- How to create a proposal?
+- How to execute a proposal?
+- How to lock a proposal?
+
+- On-chain or Off-chain voting?
+- Anonymity and privacy, counter-bribery?
+
 ### Early Feedback Questions (2018-07-08)
 
 Here are a few early questions I'd like to ask people here.
@@ -58,21 +86,13 @@ Here are a few prelimiary literature research result.
 
 ## Comprehensive Application Examples
 
-### Example 1: MutliSig Case: Joint Wallet Account Spending Approval
-
-// TODO
-
-### Example 2: PLCR Case: Secret Vote
-
-// TODO
-
-### Example 3: Custom Follow-up Action Case: Token Re-issue
-
-// TODO
+- Example 1: MutliSig Case: Joint Wallet Account Spending Approval
+- Example 2: PLCR Case: Secret Vote
+- Example 3: Custom Follow-up Action Case: Token Re-issue
 
 ## Case Study
 
-### Existing Voting Systems in Blockchain WorldERCs ERC20, ERC721, ERC735, ERC780, ERC165
+### Existing Voting Systems in Blockchain World of ERCs ERC20, ERC721, ERC735, ERC780, ERC165
 
 // TODO
 
@@ -89,31 +109,13 @@ https://medium.com/@jameson.quinn/how-place-voting-works-617a5e8ac422
 [PLCR Voting: ](https://github.com/ConsenSys/PLCRVoting)
 https://medium.com/metax-publication/a-walkthrough-of-plcr-voting-in-solidity-92420bd5b87c
 
-####
 
 ### Exiting Voting Systems in Real World
-
-// TODO
-
-#### Simple Majority Vote Requiring Quorum (e.g. Company Board)
-
-// TODO, and a small variant: ZaiGeZaiGu function committee approval (1/2 as quorum, majority vote)
-
-#### Two-tiered Shareholder Vote (e.g. GOOG, FB)
-
-// TODO
-
-#### Jury Decision of US Federal Criminal Court (All Ayle for Guity, 5/5 for Tie)
-
-// TODO
-
-#### US Presidential Election: Different Vote Time, Multi-Reginal, Two-level (General and Editorial(delegate))
-
-// TODO
-
-#### Super-Girl China 2005: Idol Ranking Vote, Multiple Votes Allowed
-
-// TODO
+- Simple Majority Vote Requiring Quorum (e.g. Company Board)
+- Two-tiered Shareholder Vote (e.g. GOOG, FB)
+- Jury Decision of US Federal Criminal Court (All Ayle for Guity, 5/5 for Tie)
+- US Presidential Election: Different Vote Time, Multi-Reginal, Two-level (General and Editorial(delegate))
+- Super-Girl China 2005: Idol Ranking Vote, Multiple Votes Allowed
 
 ## Request for Comment
 
