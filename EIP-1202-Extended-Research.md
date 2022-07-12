@@ -30,6 +30,10 @@
 - On-chain or Off-chain voting?
 - Anonymity and privacy, counter-bribery?
 
+#### Ids of Proposal
+- Should Ids be incremental or
+
+
 ### Early Feedback Questions (2018-07-08)
 
 Here are a few early questions I'd like to ask people here.
