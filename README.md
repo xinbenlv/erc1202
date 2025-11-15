@@ -1,11 +1,13 @@
 # EIP-1202 Voting Standard Working Repository
 
-[![Build Status](https://travis-ci.com/xinbenlv/eip-1202.svg?branch=master)](https://travis-ci.com/xinbenlv/eip-1202) [![CircleCI](https://circleci.com/gh/xinbenlv/eip-1202/tree/master.svg?style=svg)](https://circleci.com/gh/xinbenlv/eip-1202/tree/master)
 
-This repository is the working directory for [EIP-1202](https://github.com/ethereum/EIPs/issues/1202)
-
+This repository is the working directory for [ERC-1202](https://erc1202.org) 
+- [Original Github issue](https://github.com/ethereum/EIPs/issues/1202)
+- [Current draft](https://github.com/ethereum/ERCs/blob/master/ERCS/erc-1202.md)
+- [Current publication](https://eips.ethereum.org/EIPS/eip-1202)  
+ 
 ## Publication and Hosting
-The content of EIP-1202 is officially published in [Ethereum Improvement Proposals (Official Repo) > ERC > 1202](http://eips.ethereum.org/EIPS/eip-1202)
+The content of EIP-1202 is officially published in [Ethereum Improvement Proposals (Official Repo) > ERC > 1202](https://eips.ethereum.org/EIPS/eip-1202)
 
 An active working draft / revision is at [./EIP-1202.md](./EIP-1202.md)
 
